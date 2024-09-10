@@ -1,4 +1,4 @@
-package com.ahmete._01_JDBC_Eticaret.entity;
+package com.ahmete._02_JDBC_Forum.entity;
 
 public class BaseEntity {
 	private Integer state;
@@ -6,7 +6,6 @@ public class BaseEntity {
 	private Long updateat;
 	
 	public BaseEntity() {
-	
 	}
 	
 	public BaseEntity(Integer state, Long createat, Long updateat) {
@@ -15,20 +14,20 @@ public class BaseEntity {
 		this.updateat = updateat;
 	}
 	
-	public Long getCreateat() {
-		return createat;
-	}
-	
-	public void setCreateat(Long createat) {
-		this.createat = createat;
-	}
-	
 	public Integer getState() {
 		return state;
 	}
 	
 	public void setState(Integer state) {
 		this.state = state;
+	}
+	
+	public Long getCreateat() {
+		return createat;
+	}
+	
+	public void setCreateat(Long createat) {
+		this.createat = createat;
 	}
 	
 	public Long getUpdateat() {

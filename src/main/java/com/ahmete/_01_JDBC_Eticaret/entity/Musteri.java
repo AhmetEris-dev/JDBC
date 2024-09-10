@@ -25,10 +25,12 @@ public class Musteri extends BaseEntity{
 	
 	// boş constructur
 	public Musteri() {
+	
 	}
 	
 	// idsiz constructor:
 	public Musteri(String ad, String soyad, String cinsiyet, LocalDate dtarih, String tel, String email, String sehir) {
+		
 		this.ad = ad;
 		this.soyad = soyad;
 		this.cinsiyet = cinsiyet;
@@ -49,6 +51,20 @@ public class Musteri extends BaseEntity{
 		this.soyad = soyad;
 		this.tel = tel;
 	}
+	
+	public Musteri(Integer state, Long createat, Long updateat, Integer id, String ad, String soyad, String cinsiyet, LocalDate dtarih, String tel, String email, String sehir) {
+		super(state, createat, updateat);
+		this.id = id;
+		this.ad = ad;
+		this.soyad = soyad;
+		this.cinsiyet = cinsiyet;
+		this.dtarih = dtarih;
+		this.tel = tel;
+		this.email = email;
+		this.sehir = sehir;
+	}
+	
+	
 	
 	public String getAd() {
 		return ad;

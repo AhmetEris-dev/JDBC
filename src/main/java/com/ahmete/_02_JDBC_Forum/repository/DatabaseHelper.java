@@ -1,10 +1,9 @@
-package com.ahmete._01_JDBC_Eticaret.repository;
-
-
-import static com.ahmete._01_JDBC_Eticaret.utility.Constants.*;
+package com.ahmete._02_JDBC_Forum.repository;
 
 import java.sql.*;
 import java.util.Optional;
+
+import static com.ahmete._02_JDBC_Forum.utility.Constants.*;
 
 public class DatabaseHelper {
 	private Connection connection;
@@ -13,7 +12,8 @@ public class DatabaseHelper {
 	
 	private boolean openConnection(){
 		try {
-			connection=DriverManager.getConnection("jdbc:postgresql://"+ DB_HOSTNAME+":"+DB_PORT+"/"+DB_NAME, DB_USERNAME, DB_PASSWORD);
+			connection=
+					DriverManager.getConnection("jdbc:postgresql://"+ DB_HOSTNAME+":"+DB_PORT+"/"+DB_NAME, DB_USERNAME, DB_PASSWORD);
 			return true;
 		}
 		catch (SQLException e) {

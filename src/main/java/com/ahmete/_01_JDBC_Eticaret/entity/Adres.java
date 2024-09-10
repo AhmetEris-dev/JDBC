@@ -29,6 +29,17 @@ public class Adres extends BaseEntity {
 		this.adres = adres;
 	}
 	
+	public Adres(int id, Integer musteri_id, String il, String ilce, String mahalle, String adres, Integer state, Long createat, Long updateat, int id1) {
+		super(state, createat, updateat);
+		this.id = id;
+		this.musteri_id = musteri_id;
+		this.il = il;
+		this.ilce = ilce;
+		this.mahalle = mahalle;
+		this.adres = adres;
+	}
+	
+	
 	public String getAdres() {
 		return adres;
 	}
