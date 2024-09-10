@@ -1,4 +1,4 @@
-package com.ahmete._02_JDBC_Forum.modules;
+package com.ahmete._02_JDBC_Forum.controller;
 
 import com.ahmete._02_JDBC_Forum.entity.User;
 import com.ahmete._02_JDBC_Forum.repository.UserRepository;
@@ -6,10 +6,10 @@ import com.ahmete._02_JDBC_Forum.repository.UserRepository;
 import java.util.Optional;
 import java.util.Scanner;
 
-public class UserModule {
+public class UserController {
 	private final UserRepository userRepository;
 	
-	public UserModule() {
+	public UserController() {
 		this.userRepository = new UserRepository();
 	}
 	
@@ -19,7 +19,7 @@ public class UserModule {
 			System.out.println("Java15 Forum Giris Menu");
 			System.out.println("1. Kayıt Ol");
 			System.out.println("2. Giriş Yap");
-			System.out.println("3. Çıkış");
+			System.out.println("0. Çıkış");
 			System.out.print("seciminiz: ");
 			
 			int secim = scanner.nextInt();
@@ -32,7 +32,7 @@ public class UserModule {
 				case 2:
 					login();
 					break;
-				case 3:
+				case 0:
 					System.out.println("Çıkış yapılıyor...");
 					return;
 				default:
@@ -86,6 +86,5 @@ public class UserModule {
 			System.out.println("Giriş bilgileri hatalı!");
 		}
 	}
-	
 	
 }

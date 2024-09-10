@@ -82,7 +82,7 @@ public class UserRepository implements ICRUD<User> {
 		return Optional.empty();
 	}
 	public boolean existsByUserName(String username) {
-		sql = "SELECT 1 FROM tbluser WHERE username = '%s'".formatted(username);
+		sql = "SELECT * FROM tbluser WHERE username = '%s'".formatted(username);
 		Optional<ResultSet> resultSet = databaseHelper.executeQuery(sql);
 		try {
 			if (resultSet.isPresent()) {
