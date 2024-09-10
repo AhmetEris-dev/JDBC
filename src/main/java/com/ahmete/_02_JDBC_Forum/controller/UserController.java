@@ -45,23 +45,29 @@ public class UserController {
 	public void register() {
 		Scanner scanner = new Scanner(System.in);
 		
-		System.out.print("Adınızı giriniz: ");
-		String ad = scanner.nextLine();
+		String username;
+		boolean isUsernameAvailable;
+		String ad,soyad;
 		
-		System.out.print("Soyadınızı giriniz: ");
-		String soyad = scanner.nextLine();
-		
-		System.out.print("Username giriniz: ");
-		String username = scanner.nextLine();
-		
-		if (userRepository.existsByUserName(username)) {
-			System.out.println("Bu username zaten alınmış, lütfen başka bir username deneyin.");
-			return;
-		}
+		do {
+			System.out.print("Adınızı giriniz: ");
+			ad = scanner.nextLine();
+			
+			System.out.print("Soyadınızı giriniz: ");
+			soyad = scanner.nextLine();
+			
+			System.out.print("Username giriniz: ");
+			username = scanner.nextLine();
+			
+			isUsernameAvailable = !userRepository.existsByUserName(username);
+			if (!isUsernameAvailable) {
+				System.out.println("Bu username zaten alınmış, lütfen başka bir username deneyin.");
+			}
+			
+		} while (!isUsernameAvailable);
 		
 		System.out.print("Password giriniz: ");
 		String password = scanner.nextLine();
-		
 		
 		User user = new User(ad, soyad, username, password);
 		userRepository.save(user);
