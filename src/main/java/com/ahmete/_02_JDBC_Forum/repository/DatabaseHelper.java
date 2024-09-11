@@ -39,7 +39,6 @@ public class DatabaseHelper {
 				System.out.println("İsleminiz başarılı bir şekilde gercekleşmiştir");
 				return true;
 			}else {
-				System.out.println("Bağşantı acmada hata meydana geldi");
 				return false;
 			}
 		}
@@ -57,7 +56,6 @@ public class DatabaseHelper {
 				System.out.println("İsleminiz başarılı bir şekilde gercekleşmiştir");
 				return Optional.ofNullable(rs);
 			}else {
-				System.out.println("Bağşantı acmada hata meydana geldi");
 				return Optional.empty();
 			}
 		}
