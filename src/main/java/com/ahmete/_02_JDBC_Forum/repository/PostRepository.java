@@ -1,6 +1,7 @@
 package com.ahmete._02_JDBC_Forum.repository;
 
 import com.ahmete._02_JDBC_Forum.entity.Post;
+import com.ahmete._02_JDBC_Forum.entity.User;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -38,7 +39,7 @@ public class PostRepository implements ICRUD<Post> {
 	
 	@Override
 	public List<Post> findAll() {
-		sql="SELECT * FROM tbluser ORDER BY id ";
+		sql="SELECT * FROM tblpost ORDER BY id ";
 		Optional<ResultSet> resultSet = databaseHelper.executeQuery(sql);
 		List<Post> postList = new ArrayList<>();
 		try {
@@ -90,4 +91,21 @@ public class PostRepository implements ICRUD<Post> {
 		
 		return new Post(id, userId, baslik, icerik, LocalDate.parse(paylasimTarihi), state, createat, updateat);
 	}
+	public List<Post> findByUserId(int userId) {
+		sql = "SELECT * FROM tblpost WHERE user_id = " + userId;
+		Optional<ResultSet> resultSet = databaseHelper.executeQuery(sql);
+		List<Post> postList = new ArrayList<>();
+		try {
+			if (resultSet.isPresent()) {
+				ResultSet rs = resultSet.get();
+				while (rs.next()) {
+					postList.add(getValueFromResultSet(rs));
+				}
+			}
+		} catch (SQLException e) {
+			System.out.println("Kullanıcıya ait postlar getirilirken bir hata oluştu... " + e.getMessage());
+		}
+		return postList;
+	}
+	
 }

@@ -48,6 +48,7 @@ public class MainController {
 				}
 				case 4:{
 					kullanicilariListele();
+					break;
 				}
 			}
 		}
@@ -57,12 +58,18 @@ public class MainController {
 	
 	
 	private void tumPostlariGoruntule() {
-		List<Post> postList = postRepository.findAll();
+		List<Post> posts = postRepository.findAll();
 		
-		if (postList.isEmpty()){
-			System.out.println("Hiç post bulunmamatadır");
-		}else {
-			postList.forEach(System.out::println);
+		if (posts.isEmpty()) {
+			System.out.println("Hiç post bulunmamaktadır.");
+		} else {
+			for (Post post : posts) {
+				System.out.println("Kullanıcı: " + post.getUserId());
+				System.out.println("Başlık: " + post.getBaslik());
+				System.out.println("İçerik: " + post.getIcerik());
+				System.out.println("Tarih: " + post.getPaylasimTarihi());
+				System.out.println("-----------------------");
+			}
 		}
 	}
 	
@@ -85,18 +92,22 @@ public class MainController {
 	}
 	
 	private void kendiPostlariniGoruntule() {
-		if (UserController.girisYapanKullanici==null){
-			System.out.println("Post paylaşmak için giriş yapmanız gereklidir.");
+		if (UserController.girisYapanKullanici == null) {
+			System.out.println("Kendi postlarını görüntülemek için giriş yapmanız gerekiyor.");
 			return;
 		}
 		
-		List<Post> postList= postRepository.findAll();
+		List<Post> userPosts = postRepository.findByUserId(UserController.girisYapanKullanici.getId());
 		
-		if (postList.isEmpty()){
-			System.out.println("Hic post bulunamadı");
-		}else {
-			postList.stream().filter(post -> post.getUserId()==UserController.girisYapanKullanici.getId())
-			        .forEach(System.out::println);
+		if (userPosts.isEmpty()) {
+			System.out.println("Hiç post paylaşmadınız.");
+		} else {
+			for (Post post : userPosts) {
+				System.out.println("Başlık: " + post.getBaslik());
+				System.out.println("İçerik: " + post.getIcerik());
+				System.out.println("Tarih: " + post.getPaylasimTarihi());
+				System.out.println("-----------------------");
+			}
 		}
 		
 	}
