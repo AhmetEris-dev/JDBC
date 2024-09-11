@@ -46,7 +46,6 @@ public class PostRepository implements ICRUD<Post> {
 			if (resultSet.isPresent()) {
 				ResultSet rs = resultSet.get();
 				while (rs.next()){
-					
 					postList.add(getValueFromResultSet(rs));
 				}
 			}
@@ -91,6 +90,7 @@ public class PostRepository implements ICRUD<Post> {
 		
 		return new Post(id, userId, baslik, icerik, LocalDate.parse(paylasimTarihi), state, createat, updateat);
 	}
+	
 	public List<Post> findByUserId(int userId) {
 		sql = "SELECT * FROM tblpost WHERE user_id = " + userId;
 		Optional<ResultSet> resultSet = databaseHelper.executeQuery(sql);

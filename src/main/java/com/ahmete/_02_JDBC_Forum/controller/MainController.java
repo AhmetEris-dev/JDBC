@@ -3,7 +3,7 @@ package com.ahmete._02_JDBC_Forum.controller;
 import com.ahmete._02_JDBC_Forum.entity.Post;
 import com.ahmete._02_JDBC_Forum.entity.User;
 import com.ahmete._02_JDBC_Forum.repository.PostRepository;
-import com.ahmete._02_JDBC_Forum.repository.UserRepository;
+
 
 import java.time.LocalDate;
 import java.util.List;
@@ -14,7 +14,6 @@ public class MainController {
 	private final PostRepository postRepository;
 	
 	
-	
 	public MainController() {
 		this.postRepository = new PostRepository();
 	}
@@ -23,7 +22,7 @@ public class MainController {
 		Scanner scanner = new Scanner(System.in);
 		
 		while (true){
-			System.out.println("Java15 Post Giris Menusu");
+			System.out.println("Java15 Post Menusu");
 			System.out.println("1-Post Görüntüle");
 			System.out.println("2-Post Paylaş");
 			System.out.println("3-Kendi Postlarını Görüntüle");
@@ -50,11 +49,16 @@ public class MainController {
 					kullanicilariListele();
 					break;
 				}
+				case 0:{
+					System.out.println("Ana menuye dönülüyor");
+					return;
+				}
+				default:
+					System.out.println("Geçersiz seçenek, lütfen tekrar deneyin.");
+				
 			}
 		}
 	}
-	
-	
 	
 	
 	private void tumPostlariGoruntule() {

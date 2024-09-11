@@ -11,8 +11,5 @@ public class Java15ForumApp {
 		UserController userModule = new UserController();
 		userModule.girisEkrani();
 		
-		
-
-	
 	}
 }
