@@ -3,11 +3,13 @@ package com.ahmete._02_JDBC_Forum.controller;
 import com.ahmete._02_JDBC_Forum.entity.User;
 import com.ahmete._02_JDBC_Forum.repository.UserRepository;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.Scanner;
 
 public class UserController {
 	private final UserRepository userRepository;
+	public static User girisYapanKullanici;
 	
 	public UserController() {
 		this.userRepository = new UserRepository();
@@ -31,6 +33,10 @@ public class UserController {
 					break;
 				case 2:
 					login();
+					if (girisYapanKullanici != null) {
+						MainController mainController = new MainController();
+						mainController.girisEkrani();
+					}
 					break;
 				case 0:
 					System.out.println("Çıkış yapılıyor...");
@@ -46,7 +52,7 @@ public class UserController {
 		Scanner scanner = new Scanner(System.in);
 		
 		String username;
-		boolean isUsernameAvailable;
+		boolean isRegisteredUser;
 		String ad,soyad;
 		
 		do {
@@ -59,12 +65,12 @@ public class UserController {
 			System.out.print("Username giriniz: ");
 			username = scanner.nextLine();
 			
-			isUsernameAvailable = !userRepository.existsByUserName(username);
-			if (!isUsernameAvailable) {
+			isRegisteredUser = !userRepository.existsByUserName(username);
+			if (!isRegisteredUser) {
 				System.out.println("Bu username zaten alınmış, lütfen başka bir username deneyin.");
 			}
 			
-		} while (!isUsernameAvailable);
+		} while (!isRegisteredUser);
 		
 		System.out.print("Password giriniz: ");
 		String password = scanner.nextLine();
@@ -86,11 +92,16 @@ public class UserController {
 		Optional<User> user = userRepository.doLogin(username, password);
 		
 		if (user.isPresent()) {
-			System.out.println("Giriş başarılı! Hoşgeldiniz, " + user.get().getAd() + "!");
+			girisYapanKullanici=user.get(); //girisbasarılı ise kullanıcıyı sakladık
+			System.out.println("Giriş başarılı! Hoşgeldin, " + user.get().getAd() +" "+ user.get().getSoyad()+ "!");
+			//burada giriş yapan user'a her yerden erişebilmeli
 		
 		} else {
 			System.out.println("Giriş bilgileri hatalı!");
 		}
 	}
 	
+	public List<User> getAllUsers() {
+		return userRepository.findAll();
+	}
 }

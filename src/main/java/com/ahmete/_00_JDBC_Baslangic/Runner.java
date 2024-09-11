@@ -7,6 +7,7 @@ import java.sql.*;
  * exucuteQuery metodu ile SELECT komutu calıştırılır. Geriye resultSet döndü
  * execute metodu tum komutları calıştırılabilir
  */
+
 public class Runner {
 	public static void main(String[] args) throws SQLException {
 //		adresEkle("İzmir","Bornova",3);

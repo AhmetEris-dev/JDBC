@@ -36,6 +36,7 @@ public class DatabaseHelper {
 			if (openConnection()){
 				connection.prepareStatement(sql).executeUpdate();
 				closeConnection();
+				System.out.println("İsleminiz başarılı bir şekilde gercekleşmiştir");
 				return true;
 			}else {
 				System.out.println("Bağşantı acmada hata meydana geldi");
@@ -53,6 +54,7 @@ public class DatabaseHelper {
 			if (openConnection()){
 				ResultSet rs = connection.prepareStatement(sql).executeQuery();
 				closeConnection();
+				System.out.println("İsleminiz başarılı bir şekilde gercekleşmiştir");
 				return Optional.ofNullable(rs);
 			}else {
 				System.out.println("Bağşantı acmada hata meydana geldi");
